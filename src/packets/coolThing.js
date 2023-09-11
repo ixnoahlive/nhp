@@ -5,6 +5,6 @@ module.exports = {
     requiredArgs: ['test'],
     run(args) {
         if (!args) return ChatLib.chat('bruh!')
-        console.log(JSON.stringify(args))
+        ChatLib.chat(args.test)
     }
 }
