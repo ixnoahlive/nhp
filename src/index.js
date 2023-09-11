@@ -8,10 +8,12 @@ let Modules = {}
 // Load NHP in
 function loadNHP(quiet = false) {
     Registry = JSON.parse( FileLib.read( 'nhp', 'registry.json' ) )
-    
+
     Object.keys(Registry).forEach(id => {
         Modules[id] = require(`./packets/${Registry[id]}.js`)
     })
+
+    if (!quiet) ChatLib.chat('&aReloaded NHP successfully!') 
 
 }; loadNHP(true)
 
@@ -46,7 +48,7 @@ register('chat', (message, event) => {
 register('command', (subcommand, ...args) => {
     switch (subcommand) {
         case 'reload':
-            reloadNHP()
+            loadNHP()
         break;
 
         case 'config':
