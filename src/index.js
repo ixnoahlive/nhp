@@ -4,6 +4,7 @@ import CommandQueue from "./queue"
 let Registry = {}
 let Modules = {}
 
+let RegistryFlip = {} // Inverted version of registry where name leads to id
 
 // Load NHP in
 function loadNHP(quiet = false) {
@@ -12,6 +13,11 @@ function loadNHP(quiet = false) {
     Object.keys(Registry).forEach(id => {
         Modules[id] = require(`./packets/${Registry[id]}.js`)
     })
+
+    RegistryFlip = {}
+    Object.keys(Registry).forEach(key => {
+        RegistryFlip[Registry[key]] = key;
+    });
 
     if (!quiet) ChatLib.chat('&aReloaded NHP successfully!') 
 
@@ -38,6 +44,12 @@ register('chat', (message, event) => {
                 argData.shift()
                 argsObj[argName] = argData.join('=')
             })
+
+            // Prevent malformed packets from running
+            Modules[id].requiredArgs.forEach(argName => {
+                if (!argsObj[argName]) return console.log('[NHP] Attempted to run a packet with missing arguments!')
+            })
+
             Modules[id].run(argsObj)
         } else Modules[id].run(null)
     }
@@ -51,12 +63,20 @@ register('command', (subcommand, ...args) => {
             loadNHP()
         break;
 
+        case 'b':
+        case 'build':
+            const id = RegistryFlip[args[0]]
+            args.shift()
+            //     The packet id \/    \/ The parameters/args
+            ChatLib.say(`&n&0&r${id} ${args.join(' ').replace(/ \| /g, '␞')}`)
+        break;
+
         case 'config':
             settings.openGUI()
         break;
 
         default:
-            ChatLib.chat('&cUsage: /nhp <config/reload>')
+            ChatLib.chat('&cUsage: /nhp <build/config/reload>')
         break;
     }
 }).setName('nhp')
