@@ -5,6 +5,5 @@ module.exports = {
     run(args) {
         if (!args) return ChatLib.chat('bruh!')
         console.log(args.test)
-        console.log(args.pog)
     }
 }
