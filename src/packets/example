@@ -1,0 +1,10 @@
+module.exports = {
+    id: '00', // The packet's registry ID
+    name: 'example', // Name of the packet's file excluding the .js
+    description: 'Does a cool thing', // Describe the packet
+    requiredArgs: ['test'], // Packet cancels if arguments aren't in the payload
+    run(args) { // 1.8 code
+        ChatLib.chat(args.test)
+    },
+    runModern(args) {this.run(args)} // 1.20 code
+}

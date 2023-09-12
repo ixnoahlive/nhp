@@ -6,6 +6,8 @@ let Modules = {}
 
 let RegistryFlip = {} // Inverted version of registry where name leads to id
 
+const modern = Client.getVersion()!=="1.8.9"
+
 // Load NHP in
 function loadNHP(quiet = false) {
     Registry = JSON.parse( FileLib.read( 'nhp', 'registry.json' ) )
@@ -23,13 +25,11 @@ function loadNHP(quiet = false) {
 
 }; loadNHP(true)
 
-
-const PAYLOAD_REGEX = new RegExp('([0-9a-z][0-9a-z])')
 // Parser
 register('chat', (message, event) => {
     cancel(event)
 
-    const id = PAYLOAD_REGEX.exec(message)[0]
+    const id = message.split(' ')[0]
     if (Modules[id]) {
         let args = message.split(' ')
         
@@ -50,8 +50,12 @@ register('chat', (message, event) => {
                 if (!argsObj[argName]) return console.log('[NHP] Attempted to run a packet with missing arguments!')
             })
 
-            Modules[id].run(argsObj)
-        } else Modules[id].run(null)
+            if (modern) return Modules[id].runModern(argsObj)
+            Modules[id].run(argsObj) 
+        } else { 
+            if (modern) return Modules[id].runModern(null)
+            Modules[id].run(null) 
+        }
     }
 }).setCriteria( /&r&7\* &r&f&n&r&0&r&r(.*)&r/ ) // - &r&7* &r&f&n&r&0&r&r00&r
 
@@ -66,9 +70,11 @@ register('command', (subcommand, ...args) => {
         case 'b':
         case 'build':
             const id = RegistryFlip[args[0]]
+            if (!id) return ChatLib.chat('&cInvalid packet name! (it\'s cAsE sEnSiTiVe)')
+
             args.shift()
             //     The packet id \/    \/ The parameters/args
-            ChatLib.say(`&n&0&r${id} ${args.join(' ').replace(/ \| /g, '␞')}`)
+            ChatLib.say(`&n&0&r${id} ${args.join(' ').replace(/ \| /g, '&r␞')}`)
         break;
 
         case 'config':
