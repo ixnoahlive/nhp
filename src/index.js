@@ -29,7 +29,7 @@ function loadNHP(quiet = false) {
 register('chat', (message, event) => {
     cancel(event)
 
-    const id = message.split(' ')[0]
+    const id = message.slice(2).split(' ')[0]
     if (Modules[id]) {
         let args = message.split(' ')
         
@@ -45,19 +45,23 @@ register('chat', (message, event) => {
                 argsObj[argName] = argData.join('=')
             })
 
+            let aborted = false
+        
             // Prevent malformed packets from running
             Modules[id].requiredArgs.forEach(argName => {
-                if (!argsObj[argName]) return console.log('[NHP] Attempted to run a packet with missing arguments!')
+                if (!argsObj[argName]) aborted = true
             })
 
+            if (aborted) return console.log('[NHP] Attempted to run a packet with missing arguments!')
             if (modern) return Modules[id].runModern(argsObj)
             Modules[id].run(argsObj) 
         } else { 
+            if (Modules[id].requiredArgs.length>0) return console.log('[NHP] Attempted to run a packet with missing arguments!')
             if (modern) return Modules[id].runModern(null)
             Modules[id].run(null) 
         }
     }
-}).setCriteria( /&r&7\* &r&f&n&r&0&r&r(.*)&r/ ) // - &r&7* &r&f&n&r&0&r&r00&r
+}).setCriteria( /&r&7\* &r(.*)/ )
 
 
 // Main management command
@@ -74,7 +78,7 @@ register('command', (subcommand, ...args) => {
 
             args.shift()
             //     The packet id \/    \/ The parameters/args
-            ChatLib.say(`&n&0&r${id} ${args.join(' ').replace(/ \| /g, '&r␞')}`)
+            ChatLib.say(`${id} ${args.join(' ').replace(/ \| /g, '&r␞')}`)
         break;
 
         case 'config':
