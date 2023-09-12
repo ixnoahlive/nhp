@@ -9,3 +9,4 @@ The * symbol is any character.
 |-----|-------------------------------
 | 000 | Developer & Debug packets
 | H** | HUD related packets
+| C** | Config related packets

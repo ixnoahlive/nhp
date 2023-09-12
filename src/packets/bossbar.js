@@ -12,7 +12,7 @@ const colors = ['RED','YELLOW','GREEN','BLUE','PURPLE','PINK','WHITE']
 
 module.exports = {
     id: 'H01',
-    name: 'setBossbar',
+    name: 'bossbar',
     description: 'Sets the bossbar with the given data.',
     requiredArgs: ['name'],
     args: { 
