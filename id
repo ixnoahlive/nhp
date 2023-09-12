@@ -1,0 +1,11 @@
+# ID Information
+IDs are a way to optimize character length, by turning something like myPacketName into ABC.
+They can be any string, but the etiquette is to use a *3 character code*.
+
+## Reserved IDs
+The * symbol is any character.
+
+| ID  | Description
+|-----|-------------------------------
+| 000 | Developer & Debug packets
+| H** | HUD related packets
