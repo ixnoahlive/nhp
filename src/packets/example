@@ -3,6 +3,9 @@ module.exports = {
     name: 'example', // Name of the packet's file excluding the .js
     description: 'Does a cool thing', // Describe the packet
     requiredArgs: ['test'], // Packet cancels if arguments aren't in the payload
+    args: {
+        test: 'A test argument'
+    }, // Args description
     run(args) { // 1.8 code
         ChatLib.chat(args.test)
     },

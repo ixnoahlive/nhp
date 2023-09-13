@@ -3,10 +3,10 @@ IDs are a way to optimize character length, by turning something like myPacketNa
 They can be any string, but the etiquette is to use a *3 character code*.
 
 ## Reserved IDs
-The * symbol is any character.
 
 | ID  | Description
 |-----|-------------------------------
 | 000 | Developer & Debug packets
-| H** | HUD related packets
-| C** | Config related packets
+| H00 | HUD related packets
+| C00 | Config related packets
+| M00 | Miscellaneous

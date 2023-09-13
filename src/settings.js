@@ -11,7 +11,7 @@ class Settings {
     commandLog = true
 
     constructor() {
-        this.initialize(this);
+        this.initialize(this)
     }
 }
 

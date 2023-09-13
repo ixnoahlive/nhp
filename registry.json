@@ -1,3 +1,5 @@
 {
-    "H01": "bossbar"
+    "H01": "bossbar",
+    "M01": "sound",
+    "C01": "visibility"
 }
