@@ -3,14 +3,15 @@
 
 But what does "a modular packet system" mean, you might ask? NHP offers you many useful utilities that can let you bring your Housing experience to a greater level than ever before.
 
-You can do things normal Housing cant even fathom, like manipulating the bossbar! Many features are in the works, so make sure to check the [roadmap](#roadmap)
+You can do things normal Housing cant even fathom, like manipulating the bossbar! Many features are in the works, so make sure to check the [roadmap](#🗺️-roadmap)
 
 ## ✨ Features
 
 |                 | NHP | Vanilla Housing |
 |-----------------|-----|-----------------|
 | Bossbars        | ✅ | ❌ 
-| Auto Visibility | ⏳ | ❌
+| Auto Visibility | ✅ | ❌
+| Better Sounds   | ✅ | ❌
 
 ## ☀️ Latest Stable Ver.
 Run this command in the chatbox of your Minecraft client with [ChatTriggers](https://chattriggers.com/) installed.
@@ -33,8 +34,8 @@ Once this is done, run `/ct load` in Minecraft, and NHP is now installed!
 | ❔ | Feature
 |----|----------
 | ✅ | Bossbars
-| ⏳ | Auto Visibility
-| ❌ | Sounds
+| ✅ | Auto Visibility
+| ✅ | Sounds
 | ❌ | Particles
 | ❌ | Scoreboards
 | ❌ | Scoreboards
