@@ -27,15 +27,15 @@ function loadNHP(quiet = false) {
 
 // Parser
 register('chat', (message, event) => {
-    cancel(event)
-
-    const id = message.slice(2).split(' ')[0]
+    const id = message.slice(6).split(' ')[0].removeFormatting()
     if (Modules[id]) {
         let args = message.split(' ')
         
         args.shift()
         args = args.join(' ').split('␞')
 
+        if (!message.includes('nhp:')) return
+        cancel(event)
         if (args[0]) {
             const argsObj = {}
             args.forEach(argument => {
@@ -78,7 +78,7 @@ register('command', (subcommand, ...args) => {
 
             args.shift()
             //     The packet id \/    \/ The parameters/args
-            ChatLib.say(`${id} ${args.join(' ').replace(/ \| /g, '&r␞')}`)
+            ChatLib.say(`nhp:${id} ${args.join(' ').replace(/ \| /g, '&r␞')}`)
         break;
 
         case 'config':

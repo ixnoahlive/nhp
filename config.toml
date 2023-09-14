@@ -1,7 +1,0 @@
-
-[general]
-	show_command_log = true
-
-	[general.general]
-		show_command_log = true
-
