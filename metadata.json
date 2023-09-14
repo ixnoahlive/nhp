@@ -1,6 +1,6 @@
 {
     "name":"nhp",
-    "description":"Noah's Housing Packets",
+    "description":"A modular packet system for Housing! - Noah's Housing Packets",
     "version":"0.0.1",
     "entry":"src/index.js",
     "requires": ["Vigilance"]
